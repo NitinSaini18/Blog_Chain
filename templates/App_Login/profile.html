@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Profile Page {% endblock %}
+
+{% block body_block %}
+<link href="{% static '/css/profile.css' %}" rel="stylesheet">
+
+<div class = "myprofile">
+    <h2 id = "profile-text">My Profile</h2>
+</div>
+
+
+<div class="row card-center">
+
+    <div class="col-4">
+        {% if user.user_profile %}
+        <img src="/Media/{{user.user_profile.profile_pic}}"width="150" height="180" class= "rounded-circle left-shift">
+        <br><br> 
+        <a href="{% url 'App_Login:change_pro_pic' %}" class="btn btn-outline-secondary left-shift">ChangeProfile pic</a>
+
+        {% else %}
+        <img src="/Media/Admin.png" width="120px" class= "rounded-circle left-shift">
+        <br><br>
+        <a href="{% url 'App_Login:add_pro_pic' %}" class="btn btn-outline-secondary left-shift" style="margin-left: 53px;">ChangeProfile pic</a>
+        {% endif %}
+    </div>
+
+    <div class="col-8">
+        <p>First Name</p>
+        <p class = "textfield">{{user.first_name}}</p>
+        <p>Username</p>
+        <p class = "textfield">{{user.username}}</p>
+        <p>Email </p>
+        <p class = "textfield">{{user.email}}</p>
+        <a href="{% url 'App_Login:user_change' %}" class="btn btn-outline-success">Update</a>
+    </div>
+</div>
+<br>
+
+
+
+{% endblock %}

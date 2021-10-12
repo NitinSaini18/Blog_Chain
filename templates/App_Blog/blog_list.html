@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load custom_filter %}
+{% block title %} Home {% endblock %}
+
+{% block body_block %} 
+
+<h4 class="mb-4 mt-5 text-center" style = "font-size:30px"><strong>Popular Posts</strong></h4>
+<hr>
+<div class="owl-carousel" style = "margin-top:30px">
+  
+  {% for cat in blogs %}
+
+    <div class = "card item" style="margin-left:34px;">
+
+        <div class ="img-container">
+
+            <img src="/Media/{{cat.blog_image}}" class="responsive-img" alt="" width="100%">
+
+        </div>
+            <div class="card-content">
+                <div class="card-title">
+                   {{cat.title}}
+
+                </div>
+
+                <p class = "truncate">{{cat.blog_content| carousel_filter | linebreaks}}</p>
+                 <div class="container center-align mt20">
+                  <a href="{% url 'App_Blog:blog_detail' slug=cat.slug %}" class="btn btn-primary" style="margin-left : 90px;">Read</a>
+            </div>
+            </div>
+
+    </div>
+
+  {%endfor%}
+
+  <div class="owl-dots">
+    <div class="owl-dot active"><span></span></div>
+    <div class="owl-dot"><span></span></div>
+    <div class="owl-dot"><span></span></div>
+</div>
+</div>
+<hr>
+{% comment %}
+<!-- <section class = "text-center">
+
+    <h4 class =  "mb-5"><strong>Lastest posts</strong></h4>
+   
+    <div class="row">
+        {% for blog in blogs %}
+        <div class="col-lg-4 col-md-12 mb-4" style = "float:left;">
+            <div class="card">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="/Media/{{blog.blog_image}}" alt="{{blog.blog_title}}" class="img-fluid" title = "{{blog.blog_title}}" width = 100%>
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                      </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{blog.blog_title}}</h5>
+                    <p class="card-text">
+                        {{blog.blog_content | range_filter| linebreaks}}
+                    </p>
+                    <a href="{% url 'App_Blog:blog_detail' slug=blog.slug %}" class="btn btn-primary">Read</a>
+                </div>
+        </div>
+        
+   
+    </div>
+
+</section> -->
+{% endcomment %}
+
+<h4 class="mb-5 mt-5 text-center" style = "font-size:30px"><strong>Latest Posts</strong></h4>
+
+{% for blog in blogs %}
+
+<div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="/Media/{{blog.blog_image}}" alt="{{blog.blog_title}}" class="img-fluid" title = "{{blog.blog_title}}" width = 100%>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+            <h5 class="card-title">{{blog.blog_title}}</h5>
+            <p class="card-text">
+                {{blog.blog_content | range_filter| linebreaks}}
+            <a href="{% url 'App_Blog:blog_detail' slug=blog.slug %}" style="position: absolute; float: left; margin-left:15%">Read more</a>
+            </p>
+            <h6 >Posted By: <a href=""> {{blog.author}}</a></h6>
+            <h6>{{blog.liked_blog.count}} Likes | {{blog.blog_comment.count}} comment</h6>
+          <p class="card-text">
+            <small class="text-muted">{{blog.publish_date}}</small>
+          </p>
+         
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!-- <h6>{{blog.publish_date}}</h6>
+<div class="row">
+    <div class="col-sm-4">
+        <img src="/Media/{{blog.blog_image}}" alt="{{blog.blog_title}}" title = "{{blog.blog_title}}" width = 100%>
+    </div>
+    <div class="col-sm-8">
+        <p>{{blog.blog_content | range_filter| linebreaks}} 
+            <a href="{% url 'App_Blog:blog_detail' slug=blog.slug %}">Read more</a>
+        </p>
+        <h6>Posted By: <a href=""> {{blog.author}}</a></h6>
+        <h6>{{blog.liked_blog.count}} Likes | {{blog.blog_comment.count}} comment</h6>
+    </div>
+</div> -->
+{% endfor %}
+{% endblock %}
+
+

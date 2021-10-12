@@ -1,0 +1,31 @@
+.myprofile{
+    background-color:rgba(207, 205, 205, 0.808);
+    height:60px;
+    width:100%;
+    margin-bottom: 5%;
+}
+.left-shift{
+    margin-left: 50px;
+    margin-top: 10%
+}
+.card-center{
+    margin-left:10%;
+    
+}
+.textfield{
+    background-color:rgba(207, 205, 205, 0.808);
+    height:50px;
+    width:50%;
+    margin-bottom: 2%;
+    padding-top:10px;
+    padding-left:20px;
+    font-size: 20px;
+    color:rgba(131, 131, 131, 0.836);
+}
+
+#profile-text{
+    padding-top:10px;
+    padding-left:20px;
+    padding-bottom:20px;
+}
+
